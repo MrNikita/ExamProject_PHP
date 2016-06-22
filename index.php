@@ -16,15 +16,9 @@ require 'kodphp.inc.php';
 <body>
 <header id="header">
     <?php
-        if(isset($_SESSION['zalogowany'])) {
-            echo '<h1><a href="index.php" title="Strona główna">Hello, ' . $_SESSION['zalogowany'] .  '. Nice to see you again</a></h1>';
-        }
-        else
-        {
-            echo '<h1><a href="index.php" title="Strona główna">You haven\'t logged yet</a></h1><br>';
-        }
+       showHeader();
     if (isset($_GET['podstrona'])) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
-        echo '<section id="komunikattd">' . $_GET['podstrona'] . '</h2></section>';
+        echo '<section id="komunikattd">Podstrona: ' . $_GET['podstrona'] . '</h2></section>';
     }
 
     ?>
@@ -53,7 +47,7 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
 
             break;
         case 'produkty':
-            echo '<section id="content"><h1>Dodawanie produktu</h1>';
+            echo '<section id="content" class="scrollable"><h1>Dodawanie produktu</h1>';
             ?>
             <form action="index.php" method="POST">
                 <table>
@@ -73,7 +67,7 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             break;
         case 'kontakt':
             ?>
-            <section id="content"><h1>Kontakt</h1>
+            <section id="content" class="scrollable"><h1>Kontakt</h1>
                 <p>
                     Pehapus sp. z o.o.</br>
                     ul. Kodowa 14</br>
@@ -92,7 +86,7 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             break;
         case 'logowanie':
             ?>
-            <section id="content"><h1>Logowanie</h1>
+            <section id="content" class="scrollable"><h1>Logowanie</h1>
                 <form action="index.php" method="POST">
                     Login: <input type="text" name="login"></br>
                     Hasło: <input type="password" name="haslo"></br>
@@ -102,11 +96,12 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             <?php
             break;
         case 'mysql':
+            require_once('function.inc.php');
+            validateCreatedDataBase();
             ?>
-            <section id="content"><h1>Operacje na bazie danych</h1>
+            <section id="content" class="scrollable"><h1>Operacje na bazie danych</h1>
                 <ul id="menu">
-                    <li><a class="dbbutton" href="?action=createdb" title="Strona główna">Utwórz bazę danych</a></li>
-                    <li><a class="dbbutton" href="?action=dropdb" title="Classes">Usuń bazę daych</a></li>
+                    <li><a class="dbbutton" href="?action=clearDateBase" title="Classes">Usuń bazę daych</a></li>
                     <li><a class="dbbutton" href="?action=addtable" title="Tytuł linka">Dodaj tabelę produkty</a></li>
                     <li><a class="dbbutton" href="?action=addproduct" title="Tytuł linka">Dodaj produkt</a></li>
                     <li><a class="dbbutton" href="?action=delproduct" title="Tytuł linka">Usuń produkt id=1</a></li>
@@ -122,7 +117,6 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             echo '<section id="content"><h2>Strona o podanym adresie nie istnieje.<br>Przejdź do <a href="index.php">strony głównej</a></h2></section>';
     }
 } else {
-    // jeśli podstrona nie została ustawiona wyświetl stronę główną
     echo '<section id="content" class="scrollable">';
     include("main_content.php");
     echo '</section>';
@@ -130,7 +124,15 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
 
     <?php
 }
-
+    function showHeader(){
+        if(isset($_SESSION['zalogowany'])) {
+            echo '<h1><a href="index.php" title="Strona główna">Hello, ' . $_SESSION['zalogowany'] .  '. Nice to see you again</a></h1>';
+        }
+        else
+        {
+            echo '<h1><a href="index.php" title="Strona główna">You haven\'t logged yet</a></h1><br>';
+        }
+    }
     function addBootstrap(){
         echo '
         <meta name="viewport" content="width=device-width, initial-scale=1">

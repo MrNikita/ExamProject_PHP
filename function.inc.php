@@ -1,32 +1,25 @@
 <?php
-function createdb() {
-    // Operacje na bazie danych
-    // $link = mysqli_connect("localhost", "root", "root");
-    $link = mysqli_connect("localhost", "root", "");
-    // Sprawdzenie połączenia z bazą
-    if($link === false){
-        die("ERROR: Brak połączenia z mysql. " . mysqli_connect_error());
+function validateCreatedDataBase() {
+    $link = mysqli_connect("localhost", "root", "") or die("Error, MySQL is not connect");
+    $tableExists = mysqli_query($link, "DESCRIBE `myTable`");
+    if(!$tableExists){
+        $sql = "CREATE DATABASE demo";
+        if(mysqli_query($link, $sql)){
+            $GLOBALS['komunikat']= "Baza 'demo' została utworzona...";
+        } else{
+            $GLOBALS['komunikat']=  "ERROR: Nie można wykonać polecenia '$sql'. " . mysqli_error($link);
+        }
     }
-    // Utworzenie bazy demo
-    $sql = "CREATE DATABASE demo";
-    if(mysqli_query($link, $sql)){
-        $GLOBALS['komunikat']= "Baza 'demo' została utworzona...";
-    } else{
-        $GLOBALS['komunikat']=  "ERROR: Nie można wykonać polecenia '$sql'. " . mysqli_error($link);
-    }
-    // Zamknięcie połączenia z bazą
     mysqli_close($link);
-    // trzeba zamykac polaczenie
 }
-function dropdb() {
-    // $link = mysqli_connect("localhost", "root", "root");
-    $link = mysqli_connect("localhost", "root", "");
+function clearDateBase() {
+    $link = mysqli_connect("localhost", "root", "", "demo");
     if($link === false){
         die("ERROR: Brak połączenia z mysql. " . mysqli_connect_error());
     }
-    $sql = "DROP DATABASE demo";
+    $sql = "TRUNCATE TABLE produkty";
     if(mysqli_query($link, $sql)){
-        $GLOBALS['komunikat']=  "Baza 'demo' została usunięta...";
+        $GLOBALS['komunikat']=  "Baza 'demo' została wyczyszczona...";
     } else{
         $GLOBALS['komunikat']=  "ERROR: Nie można wykonać polecenia '$sql'. " . mysqli_error($link);
     }
@@ -108,6 +101,4 @@ function displayproducts() {
     }
     echo "</table>";
 }
-
-
 ?>

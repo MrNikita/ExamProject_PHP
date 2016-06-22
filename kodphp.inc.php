@@ -40,11 +40,8 @@ if (isset($_POST['dodaj_produkt'])) {
 //Operacje na bazie danych---------------------------------------------------------
 if (isset($_GET['action'])) {
     switch($_GET['action']) {
-        case "createdb":
-            createdb();
-            break;
-        case "dropdb":
-            dropdb();
+        case "clearDateBase":
+            clearDateBase();
             break;
         case "addtable":
             addtable();
