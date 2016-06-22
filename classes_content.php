@@ -1,4 +1,5 @@
 <?php
+$checkMenu=2;
 echo '
 
 <head>

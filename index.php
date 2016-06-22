@@ -21,38 +21,24 @@ require 'kodphp.inc.php';
         }
         else
         {
-            echo '<h1><a href="index.php" title="Strona główna">You haven\'t logged yet</a></h1>';
+            echo '<h1><a href="index.php" title="Strona główna">You haven\'t logged yet</a></h1><br>';
         }
-    $checkMenu=1;
+    if (isset($_GET['podstrona'])) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
+        echo '<section id="komunikattd">' . $_GET['podstrona'] . '</h2></section>';
+    }
+
+    ?>
+</header><br>
+
+
+    <br>
+<?php
+    include("menu_buttons.php");
     ?>
 
 
-   <nav>
-        <ul id="menu" class="nav nav-tabs">
-            <?php
-            if($checkMenu==1){
-                echo '<li><a class="active" href="index.php" title="Strona główna">Main</a></li>';
-            }else{
-                echo '<li><a href="index.php" title="Strona główna">Main</a></li>';
-            }
-            if($checkMenu==2) {
-                echo '<li><a class="active" href="?podstrona=classes" title="Classes">Classes</a></li>';
-            }else{
-                echo '<li><a href="?podstrona=classes" title="Classes">Classes</a></li>';
-            }
-            echo '<li><a class="menu-7" href="?podstrona=produkty" title="Dodaj produkt">Dodaj produkt</a></li>';
-            echo '<li><a class="menu-8" href="?podstrona=mysql" title="Zarządzanie bazą">MySql</a></li>';
-            echo '<li><a class="menu-5" href="?podstrona=kontakt" title="Tytuł linka">Kontakt</a></li>';
-            echo '<li><a class="menu-3" href="?podstrona=" title="Tytuł linka">About WWSIS</a></li>';
-            if (isset($_SESSION['zalogowany']))
-                echo '<li><a class="menu-6" href="?wyloguj=1" title="Tytuł linka"> Wyloguj</a></li>';
-            else
-                echo '<li><a class="menu-6" href="?podstrona=logowanie" title="Tytuł linka">Logowanie</a></li>';
-            ?>
 
-        </ul>
-    </nav>
-</header><br>
+
 <?php
 if (isset($komunikat)) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
     echo '<section id="komunikat">' . $komunikat . '</h2></section>';
@@ -60,7 +46,7 @@ if (isset($komunikat)) { //jeśli $komunikat ustawiony wyświetl sekcję z komun
 if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawiona
     switch ($_GET['podstrona']) {
         case 'classes':
-            $checkMenu=2;
+
             echo '<section id="content" class="scrollable">';
                   include("classes_content.php");
             echo '</section>';
@@ -137,7 +123,6 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
     }
 } else {
     // jeśli podstrona nie została ustawiona wyświetl stronę główną
-    $checkMenu=1;
     echo '<section id="content" class="scrollable">';
     include("main_content.php");
     echo '</section>';
@@ -154,7 +139,7 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> ';
     }
 ?>
-
+    </div>
 <footer id="footer">
     <p>Copyright PHP &copy; 2015, Licznik odwiedzin: [xxx] Licznik Twoich wyświetleń [<?php if (isset($_COOKIE['wizyta'])) echo $_COOKIE['wizyta']; else echo '1';?>] Licznik wyświetleń w sesji [<?php echo $_SESSION['licznikwsesji']; ?>]</p>
     <p>Strona główna - głowny plik witryny &nbsp;&nbsp;&nbsp; <a href="index.php" title="Programowanie PHP">index.php</a></p>
