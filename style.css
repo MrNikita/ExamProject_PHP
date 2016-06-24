@@ -1,6 +1,6 @@
 *
 {
-margin: 0 auto;
+
 padding:auto;
 }
  
@@ -18,7 +18,7 @@ html
 {
 background-color:#eeeeee;
 }
- 
+
 body
 {
 /*width:1024px;*/
@@ -26,6 +26,18 @@ margin:auto;
 /*border-left:1px solid #1c1d1d;*/
 /*border-right:1px solid #1c1d1d;*/
 min-height:709px;
+}
+
+.tableMain {	border-spacing:20px;
+	border-collapse: separate;
+}
+.tableHead
+{
+	padding-left:50px;
+	letter-spacing:4px;
+	font-style:italic;
+	font-family: Georgia;
+	line-height:50px;
 }
  
 #header
@@ -44,6 +56,8 @@ h1 a
 	color: #ff4411;
 	line-height:80px;
 }
+
+
  
 #menu ul
 {
@@ -145,7 +159,7 @@ font-style:italic
 	height: 100px; /* or any value */
 	overflow-y: auto;
 }
-#komunikat {
+#messageInfo {
 	background-color: lightgreen;
 	border: solid 2px darkgreen;
 

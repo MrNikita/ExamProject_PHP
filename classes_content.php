@@ -21,7 +21,7 @@ echo '
         <td align="center"><b>Specialization Programs</b></td>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       <tr class="success">
         <td>Computer Graphics</td>
         <td>This specialization program aims to familiarize students with different types of media and their diverse applications. Teaching students how to integrate graphics, text, sound, and animation, we enable them to develop practical skills necessary for creating effective multimedia presentations. The specialization prepares graduates for work as computer graphics designers and as multimedia specialists in marketing companies.</td>

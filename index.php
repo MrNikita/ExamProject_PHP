@@ -8,19 +8,12 @@ require 'kodphp.inc.php';
     <?php addBootstrap();?>
     <meta charset="UTF-8" >
     <link rel="Stylesheet" href="style.css">
-    <title>Przykładowa strona www wykonana w HTML 5</title>
-    <meta name="Description" content="Przykładowy szablon strony html" >
-    <meta name="keywords" content="Tutaj słowa kluczowe oddzielone przecinkiem">
-    <meta name="author" content="PHP">
+    <title>HTML and PHP exam project</title>
 </head>
 <body>
 <header id="header">
     <?php
        showHeader();
-    if (isset($_GET['podstrona'])) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
-        echo '<section id="komunikattd">Podstrona: ' . $_GET['podstrona'] . '</h2></section>';
-    }
-
     ?>
 </header><br>
 
@@ -29,13 +22,9 @@ require 'kodphp.inc.php';
 <?php
     include("menu_buttons.php");
     ?>
-
-
-
-
 <?php
-if (isset($komunikat)) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
-    echo '<section id="komunikat">' . $komunikat . '</h2></section>';
+if (isset($message)) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
+    echo '<section id="messageInfo">' . $message . '</h2></section>';
 }
 if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawiona
     switch ($_GET['podstrona']) {
@@ -46,21 +35,16 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             echo '</section>';
 
             break;
-        case 'produkty':
-            echo '<section id="content" class="scrollable"><h1>Dodawanie produktu</h1>';
+        case 'students':
+            echo '<section id="content" class="scrollable"><h1 class="tableHead">Add yourself to student list</h1>';
             ?>
             <form action="index.php" method="POST">
-                <table>
-                    <tr><td>Nazwa</td><td>j.m.</td><td>Ilość</td><td>cena netto</td></tr>
-                    <tr><td><input type="text" name="nazwa" required></td>
-                        <td><select name="jm" required> //tutaj zmieniłem nazwe
-                                <option selected>szt</option>
-                                <option>kg</option>
-                            </select></td>
-                        <td><input type="text" name="ilosc" required></td>
-                        <td><input type="text" name="cena" required></td></tr>
+                <table  cellspacing="50" cellpadding="50" class="tableMain">
+                    <tr><td><b>Full Name</b></td><td><input type="text" name="fullName" size="60"  required></td></tr>
+                    <tr><td>Birthdate(yyyy-mm-dd) </td><td><input type="text" name="birthdate" size="60"  required ></td></tr>
+                    <tr><td>Specialization </td><td><input type="text" name="branch" size="60"  required></td></tr>
+                    <tr><td><input type="submit" type="button" class="btn btn-success" name="dodaj_produkt" value="Dodaj produkt"></td></tr>
                 </table>
-                <input type="submit" name="dodaj_produkt" value="Dodaj produkt">
             </form>
             <?php
             echo '</section>';
@@ -86,10 +70,10 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             break;
         case 'logowanie':
             ?>
-            <section id="content" class="scrollable"><h1>Logowanie</h1>
+            <section id="content" class="scrollable"><h1>Login</h1>
                 <form action="index.php" method="POST">
                     Login: <input type="text" name="login"></br>
-                    Hasło: <input type="password" name="haslo"></br>
+                    Password: <input type="password" name="haslo"></br>
                     <input type="submit" name="logowanie" value="Zaloguj">
                 </form>
             </section>
@@ -99,14 +83,13 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
             require_once('function.inc.php');
             validateCreatedDataBase();
             ?>
-            <section id="content" class="scrollable"><h1>Operacje na bazie danych</h1>
+            <section id="content" class="scrollable">
                 <ul id="menu">
-                    <li><a class="dbbutton" href="?action=clearDateBase" title="Classes">Usuń bazę daych</a></li>
-                    <li><a class="dbbutton" href="?action=addtable" title="Tytuł linka">Dodaj tabelę produkty</a></li>
-                    <li><a class="dbbutton" href="?action=addproduct" title="Tytuł linka">Dodaj produkt</a></li>
-                    <li><a class="dbbutton" href="?action=delproduct" title="Tytuł linka">Usuń produkt id=1</a></li>
-                    <li><a class="dbbutton" href="?action=updateproduct" title="Tytuł linka">Aktualizuj produkt</a></li>
-                </ul></br></br>
+                    <li><a type="button" class="btn btn-success" href="?action=updateStudents" title="Tytuł linka">Refresh table</a></li>
+                    <li><a type="button" class="btn btn-danger" href="?action=clearDateBase" title="Classes">Clear data</a></li>
+                </ul>
+            <h1 class="tableHead">Currently added following students to date base: </h1>
+                </br>
                 <?php
                 displayproducts();  ?>
             </section>

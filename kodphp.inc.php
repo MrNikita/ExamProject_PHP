@@ -20,9 +20,9 @@ if(isset($_COOKIE['wizyta'])) { // spr. czy cookie istnieje
 if (isset($_POST['logowanie'])) {  //Jeśli formularz logowania został wysłany to sprawdź login i hasło
     if (($_POST['login']=='admin') && ($_POST['haslo']=='123')) {
         $_SESSION['zalogowany']=$_POST['login'];  //Jeśli logowanie poprawne ustaw zmienną sesyjną 'zalogowany'
-        $komunikat='Witaj ' . $_POST['login'] . '. Zostałes poprawnie zalogowany.';
+        $message='Hi, ' . $_POST['login'] . '.';
     } else {
-        $komunikat='Błędny login lub hasło.';
+        $message='Błędny login lub hasło.';
         $_GET['podstrona']='logowanie';  // ustaw zmienną 'podstrona' aby ponownie wyświetlić formularz logowania
     }
 }
@@ -30,12 +30,12 @@ if (isset($_POST['logowanie'])) {  //Jeśli formularz logowania został wysłany
 // Wylogowanie  -  usunięcie zmiennej sesyjnej $_SESSION['zalogowany'] --------------------------------------
 if (isset($_GET['wyloguj'])) {
     unset($_SESSION['zalogowany']);
-    $komunikat='Zostałes poprawnie wylogowany';
+    $message='Zostałes poprawnie wylogowany';
 }
 
 // Dodawanie produktu ---------------------------------------------------------------------------------------
 if (isset($_POST['dodaj_produkt'])) {
-    addproduct($_POST['nazwa'],  $_POST['jm'],  $_POST['ilosc'],  $_POST['cena']);
+    addStudent($_POST['fullName'],  $_POST['birthdate'],  $_POST['branch']);
 }
 //Operacje na bazie danych---------------------------------------------------------
 if (isset($_GET['action'])) {
@@ -46,15 +46,11 @@ if (isset($_GET['action'])) {
         case "addtable":
             addtable();
             break;
-        case "addproduct":
-            addproduct('Kamienie', 'szt', 2, 33);
-            addproduct('Kamienie', 'szt', 2, 44);
-            break;
         case "delproduct":
             delproduct(1);
             break;
-        case "updateproduct":
-            updateproduct();
+        case "updateStudents":
+            updateStudents();
             break;
         case "del":
             delproduct($_GET['id']);
