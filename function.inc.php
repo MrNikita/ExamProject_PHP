@@ -84,6 +84,49 @@ function displayproducts() {
         $branch = $rekord['branch'];
         echo "<tr><td>$id</td><td>$fullName</td><td>$birthdate</td><td>$branch</td><td><a type=\"button\" class=\"btn btn-default\" href=\"?action=del&id={$rekord['student_id']}\">DELETE</a> </td></tr>";
     }
-    echo "</table>";
+    echo "</table></section>";
 }
+
+function printPanelForShowAddedStudents()
+{
+    echo '
+        <section id="content" class="scrollable">
+                <ul id="menu">
+                    <li><a type="button" class="btn btn-success" href="?action=updateStudents" title="Tytuł linka">Refresh table</a></li>
+                    <li><a type="button" class="btn btn-danger" href="?action=clearDateBase" title="Classes">Clear data</a></li>
+                </ul>
+            <h1 class="tableHead">Currently added following students to date base: </h1>
+                </br>
+                <?php
+                displayproducts();  ?>
+            </section>    
+    ';
+}
+function showHeader(){
+    if(isset($_SESSION['zalogowany'])) {
+        echo '<h1><a href="index.php" title="Strona główna">Hello, ' . $_SESSION['zalogowany'] .  '. Nice to see you again</a></h1>';
+    }
+    else
+    {
+        echo '<h1><a href="index.php" title="Strona główna">You haven\'t logged yet</a></h1><br>';
+    }
+}
+function showPanelForReportByAddedStudents()
+{
+    echo '
+                    <ul id="menu">
+                        <li><a type="button" class="btn btn-success" href="?action=updateStudents" title="Tytuł linka">Refresh table</a></li>
+                        <li><a type="button" class="btn btn-danger" href="?action=clearDateBase" title="Classes">Clear data</a></li>
+                    </ul>
+                <h1 class="tableHead">Currently added following students to date base: </h1>
+                    </br>';
+}
+function addBootstrap(){
+    echo '
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> ';
+}
+
 ?>

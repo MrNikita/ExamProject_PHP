@@ -12,7 +12,7 @@ echo '
 <body>
 
 <div class="container">
-  <h2 align="center">We offer you foollow classes at this semester</h2>
+  <h2 align="center" class="tableHead">We offer you foollow classes at this semester</h2>
   <center>Computer Science Specialisations</center><br>
   <table class="table">
     <thead>

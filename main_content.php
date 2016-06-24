@@ -4,7 +4,7 @@ echo '
 
 <section id="content">
         <div class="container">
-            <h2 align="center">Why study at WWSIS "Horizon" in Wroclaw?</h2><br>
+            <h2 align="center" class="tableHead">Why study at WWSIS "Horizon" in Wroclaw?</h2><br>
             <div class="well well-sm">Our teachers, our students, their parents and experts in the field see us as one of the best private colleges in the region.</div>
             <div class="well well-sm">We offer courses - undergraduate Automation and Robotics, undergraduate (BSc and BEng) and second degree (MSc) in Computer Science, undergraduate degree (BA) in Tourism and Recreation, undergraduate degree (BA) in Philology (English and Germanic). </div>
             <div class="well well-cm">Our goal is to train competitive and qualified graduates and prepare them for the challenges of the modern market at home and abroad.</div>
