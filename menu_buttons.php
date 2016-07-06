@@ -1,5 +1,5 @@
 <?php
-    echo '<div class="container">
+    echo '<div >
                 <ul class="nav nav-tabs">';
     
     if (!isset($_GET['podstrona']))

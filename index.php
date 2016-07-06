@@ -7,24 +7,26 @@ require 'kodphp.inc.php';
 <head>
     <?php addBootstrap();?>
     <meta charset="UTF-8" >
+    <script src="http://livejs.com/live.js" type="text/javascript"></script>
     <link rel="Stylesheet" href="style.css">
     <title>HTML and PHP exam project</title>
+
 </head>
 <body>
-<header id="header">
+
     <?php
        showHeader();
     ?>
-</header><br><br>
+<br><br>
 <?php
     include("menu_buttons.php");
     ?>
 <?php
-if (isset($message)) { //jeśli $komunikat ustawiony wyświetl sekcję z komunikatem
+if (isset($message)) { 
     echo '<section id="messageInfo">' . $message . '</h2></section>';
 }
 
-if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawiona
+if (isset($_GET['podstrona'])) {   
     switch ($_GET['podstrona']) {
         case 'classes':
 
@@ -71,7 +73,7 @@ if (isset($_GET['podstrona'])) {   // sprawdzenie czy podstrona została ustawio
 ?>
     </div>
 <footer id="footer">
-    <p>Copyright WWSIS &copy; 2016, You have entered to this site [<?php if (isset($_COOKIE['wizyta'])) echo $_COOKIE['wizyta'];  else echo '1';?>] times and you have logged [<?php echo $_SESSION['licznikwsesji']; ?>] times via session</p>
+    <p>Copyright WWSIS &copy; 2016, Youjdshf have entered to this site [<?php if (isset($_COOKIE['wizyta'])) echo $_COOKIE['wizyta'];  else echo '1';?>] times and you have logged [<?php echo $_SESSION['licznikwsesji']; ?>] times via session</p>
     <p>This site has been created by Dmytro Melnychuk</p>
 </footer>
 </body>
